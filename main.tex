@@ -1,0 +1,374 @@
+\documentclass[12pt,a4paper]{article}
+\pagestyle{plain}
+
+% ---------- 基本レイアウト ----------
+\usepackage[margin=25mm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% ---------- フォント・文字コード ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern} % 必要なら newtxtext,newtxmath に変更可
+
+% ---------- 数式・図表 ----------
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{threeparttable}
+\usepackage{caption}
+\captionsetup{labelfont=bf}
+
+% ---------- ハイパーリンク ----------
+\usepackage[hidelinks]{hyperref}
+
+% ---------- 参考文献（APSA風） ----------
+\usepackage[authoryear]{natbib}
+\bibliographystyle{apsr}
+
+% ---------- タイトル情報 ----------
+\title{Beneath the Surface: Measuring Hidden Indifference\\
+in Japanese Territorial Attitudes}
+
+\author{Takeru Eto\thanks{JX Press Corporation / Graduate School of Arts and Sciences, The University of Tokyo. Email:
+\texttt{takeru0219@gmail.com}.}}
+
+\date{Draft: \today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Japan is currently engaged in three major territorial disputes: the Northern Territories
+(known as the Kuril Islands to Russia), Takeshima (Liancourt Rocks, or Dokdo to South
+Korea), and the Senkaku Islands (Diaoyu to China and Tiaoyutai to Taiwan).
+Official government surveys consistently report high levels of public concern regarding these
+territories. However, public opinion on matters of national identity and territory is not
+always straightforward, and respondents may overstate their concern due to social
+desirability bias. Expressing indifference on a matter of national sovereignty could be
+perceived as unpatriotic, leading respondents to conceal their genuine lack of a strong
+opinion.
+
+To address this issue, this paper employs a list experiment embedded in a large-scale online
+survey of 4{,}500 Japanese citizens. The design estimates the proportion of the population
+that is privately indifferent to each territorial dispute. The results reveal substantial levels of
+hidden indifference: approximately 20\% of respondents do not have a strong opinion on the
+sovereignty of Takeshima, and around 12\% are indifferent to the Senkaku Islands dispute.
+For the Northern Territories, the estimate is smaller and statistically indistinguishable from
+zero. These findings challenge the conventional view of a uniformly concerned public and
+suggest that the domestic political constraints facing Japanese leaders may be more flexible
+than commonly assumed.
+\end{abstract}
+
+\bigskip
+\noindent\textbf{Keywords:} territorial disputes; public opinion; social desirability bias; list experiment; Japan
+
+\section{Introduction}
+
+Japan is currently engaged in three major territorial disputes: the Northern Territories (known
+as the Kuril Islands to Russia), Takeshima (Liancourt Rocks, or Dokdo to South Korea), and
+the Senkaku Islands (Diaoyu to China and Tiaoyutai to Taiwan) \citep{bukh2018}. Official
+government surveys consistently report high levels of public concern regarding these
+territories. For instance, a 2023 survey by the Cabinet Office found that 63.6\% of respondents
+were ``concerned'' about the Takeshima issue \citep{cabinet2023takeshima}, while a 2024
+survey reported that 78.4\% were concerned about the Senkaku Islands
+\citep{cabinet2024senkaku}. These figures are often cited as evidence of a strong, unified
+national consensus demanding a firm governmental stance.
+
+However, public opinion on matters of national identity and territory is not always
+straightforward. Governments may leverage territorial issues to stoke nationalist sentiment
+for domestic political gain \citep{fang2022}, as has been argued in the case of Japan's policy
+on the Northern Territories \citep{bukh2018}. Conversely, strong public sentiment can
+constrain a government's diplomatic flexibility, narrowing the ``zone of possible agreement''
+by making any perceived concession politically costly \citep{loizides2022}. Given these
+dynamics, a critical question arises: Are the Japanese people truly as concerned with these
+territorial disputes as direct surveys suggest?
+
+This paper posits that conventional surveys may overestimate public engagement due
+to social desirability bias (SDB), the tendency of respondents to give answers they believe are
+socially acceptable rather than expressing their true beliefs. Expressing indifference on a
+matter of national sovereignty could be perceived as unpatriotic, leading respondents to
+conceal their genuine lack of a strong opinion. Moreover, as these surveys are conducted by
+the Japanese government, they inquire whether respondents are concerned about each issue
+and what actions they believe the Japanese government should undertake, without eliciting
+respondents' claims or opinions regarding each disputed territory.
+
+To overcome this methodological challenge, this study employs a list experiment, an
+indirect questioning technique designed to elicit more truthful answers on sensitive topics
+\citep{blair2012}. By embedding this experiment within a large-scale online survey, this
+research provides a quantitative estimate of the proportion of the Japanese public that is
+privately indifferent to these territorial disputes. The findings suggest that a considerable
+portion of the population does not hold a strong opinion, revealing a more nuanced and
+complex reality of public attitudes than is commonly assumed.
+
+\section{Literature Review: Nationalism, Public Opinion, and Sensitive Attitudes}
+
+\subsection{Public Opinion and Foreign Policy in Territorial Disputes}
+
+The link between public opinion and foreign policy is a central theme in international
+relations. In democratic states, leaders must remain attentive to public sentiment, as it can
+impose significant political costs on those who are seen as compromising on core national
+interests. Territorial disputes are particularly potent in this regard, as land is often framed as
+an “indivisible’’ part of the national identity. Research shows that public opinion can drive
+governments toward harder stances and limit their ability to negotiate peaceful resolutions
+\citep{fang2022,loizides2022}.
+
+However, the causal relationship is not always unidirectional. Governments also
+actively shape public opinion. \citet{bukh2018} argues that the Japanese government
+historically leveraged the Northern Territories issue as a tool to foster anti-Soviet sentiment,
+a strategy that proved successful in domestic politics but ultimately hindered diplomatic
+progress. This highlights the complex interplay between elite-led narratives and grassroots
+public sentiment. While official discourse in Japan portrays a nation united in its concern for
+its territories, no academic research has systematically investigated the “true’’ underlying
+attitudes of the public, free from the pressures of social desirability.
+
+Prior research has shown that public attitudes toward territorial disputes are far from uniform.
+In particular, \citet{tanaka_2015} demonstrates that proximity to disputed areas and
+economic considerations systematically shape citizens’ degree of hawkishness. His findings
+highlight that even in highly salient territorial conflicts, sub-national heterogeneity exists,
+challenging the assumption of a monolithic nationalist public. These insights imply that
+variation may exist not only in how strongly people feel about a dispute but also in whether
+they hold a strong opinion at all—an issue that direct surveys are ill-equipped to detect.
+
+Existing work also highlights the emotional mechanisms through which
+territorial threats shape political attitudes \citep{kobayashi_katagiri_2018}. Threats from rival
+states can evoke anger and heighten nationalist pressure, thereby making expressions of
+indifference socially costly. The current findings therefore suggest a parallel mechanism:
+external threats may not only mobilize anger but also create social pressure to express
+concern, prompting indifferent citizens to conceal their true attitudes.
+
+\subsection{Measuring Sensitive Attitudes: The List Experiment}
+
+Directly asking about sensitive topics—such as racial prejudice, corruption, or support for
+extremist ideologies—is notoriously difficult due to social desirability bias
+\citep{blair2012}. Respondents may mask their true views to avoid social sanction. This
+phenomenon has been observed in various political contexts, from citizens concealing dissent
+against the war in Ukraine to Taiwanese citizens hiding pro-unification attitudes
+\citep{kramon2019,chapkovski2022,wu2024}.
+
+The list experiment, also known as the Item Count Technique (ICT), offers a solution.
+This indirect questioning method presents two randomly assigned groups with a list of items.
+The control group receives non-sensitive “control’’ items, while the treatment group receives
+the same list plus one sensitive item. Respondents report only the total number of applicable
+items, not which ones. By providing this veil of privacy, the technique encourages more
+honest responses and enables researchers to detect attitudes that remain hidden in direct
+surveys \citep{blair2012,glynn2013,kramon2019}.
+
+Consistent with this, \citet{kim_2015} finds weak demographic predictors of territorial
+attitudes using direct surveys. The present study suggests one reason for such weak
+associations: a large portion of respondents may be giving socially desirable answers,
+masking true variation in latent attitudes. Indirect methods thus uncover structure that direct
+questioning fails to detect, providing a more accurate picture of the distribution of public
+opinion on territorial issues.
+
+While recent work has begun to employ list experiments to
+study attitudes toward territorial concessions in Ukraine and to reassess survey estimates
+in the Japan–China dispute, no study to date has systematically examined hidden indifference toward multiple territorial disputes
+in a non-war setting such as contemporary Japan.
+
+In the context of Russia’s invasion of Ukraine, \citet{daniels2025} uses a list experiment
+to assess Ukrainians’ willingness to concede territory—specifically, Crimea.
+The study finds that the estimated share supporting concessions is very small (around 5–6 percent)
+and closely matches direct-question estimates, suggesting limited social desirability bias in that particular wartime context.
+
+Recent studies on Ukraine similarly employ list experiments to gauge support
+for territorial concessions during wartime, finding that only a small minority of
+citizens are willing to “trade land for peace” and that opposition to concessions is largely
+genuine rather than a product of social desirability bias \citep{popeleches_robertson_2025}.
+
+\section{Research Design and Methodology}
+
+This study addresses the research question: ``How many Japanese citizens are genuinely
+indifferent to the country's territorial disputes?'' An online, opt-in panel survey was
+conducted on June 28--29, 2025, with a sample of 4{,}500 Japanese citizens aged 18 to 99.
+Quotas were set for gender and region (47 prefectures) to enhance the representativeness of
+the sample.
+
+Respondents were randomly assigned to either a control group or one of three
+treatment groups, each focused on a different territory (Takeshima, the Senkaku Islands, or
+the Northern Territories).
+
+\paragraph{Control Group.} Respondents were shown a list of four non-sensitive items and
+asked how many applied to them. The items were designed to be politically neutral and
+varied in their likely applicability to the general population:
+\begin{enumerate}
+  \item I would rather watch movies in a theater than at home.
+  \item I tend to plan my trips in detail beforehand.
+  \item I have made a donation(s) through the Furusato Nozei (Hometown Tax Donation) system before.
+  \item I have purchased a physical book or magazine from a bookstore within the last month.
+\end{enumerate}
+
+\paragraph{Treatment Groups.} Respondents received the same four non-sensitive items plus
+one sensitive item. The sensitive item was phrased to capture indifference:
+\begin{quote}
+  Personally, I do not have a strong opinion on the sovereignty of [Takeshima / the
+  Senkaku Islands / the Northern Territories].
+\end{quote}
+
+The difference in the mean count of items between a treatment group and the control
+group provides the estimated proportion of respondents who agree with the sensitive
+item---that is, the proportion who are indifferent to that specific territorial dispute.
+
+\section{Results}
+
+The results of the list experiment reveal a substantial level of hidden indifference toward
+Japan's territorial disputes, challenging the narrative of a uniformly concerned public.
+
+\subsection{Overall Estimated Indifference}
+
+As shown in Figure~\ref{fig:territory}, the estimated proportion of respondents who are
+indifferent varies by territory:
+\begin{itemize}
+  \item \textbf{Takeshima}: An estimated 19.8\% of the Japanese public does not have a strong
+  opinion on the sovereignty of Takeshima. This result is statistically significant, with a
+  95\% confidence interval that does not include zero.
+  \item \textbf{Senkaku Islands}: An estimated 12.0\% are indifferent toward the Senkaku Islands
+  dispute. This finding is also statistically significant.
+  \item \textbf{Northern Territories}: The estimated proportion of indifference is 5.7\%.
+  However, the confidence interval for this estimate includes zero, meaning the result is
+  not statistically significant and cannot be distinguished from a null effect.
+\end{itemize}
+
+\begin{figure}[t]
+  \centering
+  % 自分のファイル名に合わせて差し替えてください
+  % 図のファイルが存在しない場合は、以下の行をコメントアウトしてください
+  \IfFileExists{figure_le_indifference_by_territory.pdf}{%
+    \includegraphics[width=0.8\textwidth]{figure_le_indifference_by_territory.pdf}%
+  }{%
+    \fbox{\parbox{0.8\textwidth}{\centering\vspace{2cm}[Figure 1: Estimated Proportion of Indifference by Territory]\\\vspace{2cm}}}%
+  }
+  \caption{Estimated Proportion of Indifference by Territory}
+  \label{fig:territory}
+\end{figure}
+
+These findings are striking. For both Takeshima and the Senkaku Islands, a sizable
+minority---one in five and one in eight citizens, respectively---privately harbors an
+indifference that is not captured by conventional polling methods. The lack of a statistically
+significant result for the Northern Territories may suggest that public opinion on this issue is
+either genuinely more consolidated or that the list experiment was less effective in this
+specific context for reasons that warrant further investigation.
+
+\subsection{Analysis by Subgroups}
+
+Preliminary analysis of demographic subgroups reveals further nuances, which are shown in
+Figures~\ref{fig:region} and \ref{fig:age}. Figure~\ref{fig:region} shows the results for
+regions, and Figure~\ref{fig:age} shows the results for age groups.
+
+For the Takeshima dispute, indifference appears to be higher among men than women,
+and among younger (30--49) and older (70 and above) age groups compared to middle-aged
+(50--69) respondents. A regional breakdown shows significant variation, with notably high
+levels of indifference in Tokyo, while the estimate for the Chugoku region (geographically
+closest to the dispute) is statistically insignificant and negative, suggesting potential
+resistance to expressing indifference even indirectly.
+
+Similar patterns emerge for the Senkaku Islands, with men and both younger and
+older cohorts showing higher levels of indifference. As with Takeshima, the estimate for
+indifference in Tokyo is high, while in Kyushu (geographically closer), the estimate is
+statistically insignificant. These regional patterns suggest that geographic proximity to a
+disputed territory may correlate with stronger, more publicly aligned opinions. However,
+more rigorous analysis with demographic covariates is needed to confirm these initial
+observations.
+
+\begin{figure}[t]
+  \centering
+  % 自分のファイル名に合わせて差し替えてください
+  % 図のファイルが存在しない場合は、以下の行をコメントアウトしてください
+  \IfFileExists{figure_le_indifference_by_PRblock_facet.pdf}{%
+    \includegraphics[width=1.0\textwidth]{figure_le_indifference_by_PRblock_facet.pdf}%
+  }{%
+    \fbox{\parbox{1.0\textwidth}{\centering\vspace{2cm}[Figure 2: Estimated Proportion of Indifference by Territory and Region]\\\vspace{2cm}}}%
+  }
+  \caption{Estimated Proportion of Indifference by Territory and Region\\
+  \emph{Note:} Prefectures are grouped according to the PR block in lower house elections.}
+  \label{fig:region}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  % 自分のファイル名に合わせて差し替えてください
+  % 図のファイルが存在しない場合は、以下の行をコメントアウトしてください
+  \IfFileExists{figure_le_indifference_by_age.pdf}{%
+    \includegraphics[width=1.0\textwidth]{figure_le_indifference_by_age.pdf}%
+  }{%
+    \fbox{\parbox{1.0\textwidth}{\centering\vspace{2cm}[Figure 3: Estimated Proportion of Indifference by Territory and Age Group]\\\vspace{2cm}}}%
+  }
+  \caption{Estimated Proportion of Indifference by Territory and Age Group}
+  \label{fig:age}
+\end{figure}
+
+\subsection{ICT Regression Analysis}
+
+To further examine the demographic and regional patterns of indifference, we conducted
+regression analyses using the Item Count Technique (ICT) framework. Table~\ref{tab:ict_regression}
+presents the results of ordinary least squares (OLS) models for each of the three territorial
+disputes. The dependent variable is the count of items respondents indicated applied to them.
+The key coefficients of interest are the Treatment indicator and its interactions with
+demographic and regional variables, which capture latent indifference toward each dispute.
+
+\input{reg_ict_three_disputes}
+
+The results in Table~\ref{tab:ict_regression} reveal several noteworthy patterns. For Takeshima,
+the interaction terms show significantly higher indifference in Tokyo, Hokuriku-Shinetsu, Kinki,
+and Kyushu regions. For the Senkaku Islands, the treatment effect shows a marginally significant
+negative interaction with male respondents. For the Northern Territories, younger age groups
+(30s, 40s, and 50s) show significantly lower treatment effects, suggesting less indifference
+among these cohorts compared to the youngest reference group.
+
+
+\section{Discussion and Conclusion}
+
+This study set out to measure the ``hidden indifference'' of the Japanese public toward
+territorial disputes. The results from the list experiment strongly suggest that public opinion is
+not the monolith that direct surveys often portray. The finding that approximately 20\% of the
+public is indifferent to the Takeshima issue and 12\% to the Senkaku Islands issue has
+significant implications for understanding Japanese politics and foreign policy.
+
+First, it suggests that a silent minority may be more open to diplomatic compromise
+than is commonly believed. While vocal nationalist groups and official rhetoric create an
+impression of uniform public resolve, there exists a latent ``zone of possible agreement'' that
+political leaders could potentially activate if they chose to lead public opinion rather than
+simply follow it. The government's fear of public backlash, which has been cited as a reason
+for rejecting diplomatic overtures in the past, may be based on an overestimation of public
+rigidity.
+
+Second, the findings are a powerful reminder of the importance of methodology in
+survey research on sensitive topics. Social desirability bias appears to significantly mask true
+attitudes on territorial issues in Japan. Future research and media reporting on this topic
+should exercise caution when interpreting the results of direct-question polls and
+acknowledge the potential for such biases.
+
+This research is not without limitations. The use of an online opt-in panel introduces
+potential selection bias. Furthermore, the phrasing of the sensitive item---``I do not have a
+strong opinion''---may be open to some interpretation. Future work should analyze the
+demographic and political characteristics of the ``indifferent'' group to understand who they
+are, and employ other methods to triangulate these findings.
+
+In conclusion, by looking beneath the surface of official polling data, this study
+reveals a more complex and nuanced landscape of Japanese public opinion. A sizable portion
+of the citizenry is privately indifferent to territorial sovereignty, a fact hidden by the pressures
+to conform to a nationalist consensus. Recognizing this hidden indifference is a critical first
+step toward a more accurate understanding of the domestic political constraints and
+opportunities facing Japanese leaders as they navigate these contentious diplomatic waters.
+
+\section*{Acknowledgments}
+
+I thank JX Press Corporation for providing access to the survey data used in this study.
+The views expressed here are my own and do not represent those of the company.
+
+\section*{Data Availability}
+The survey data used in this paper were provided by JX Press Corporation and
+cannot be publicly shared due to contractual and confidentiality restrictions.
+Replication code using simulated example data is available upon request.
+
+\section*{Conflict of Interest}
+The author has an outsourcing contract with JX Press Corporation,
+which provided access to the data used in this study.
+The company had no role in the design, analysis, or conclusions of this research.
+
+
+\bibliography{references}
+
+\end{document}
