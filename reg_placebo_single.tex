@@ -1,0 +1,69 @@
+\begin{table}[htbp]
+\centering
+\caption{Placebo Regression Using Control-Item Counts}
+\label{tab:placebo_reg}
+\begin{threeparttable}
+\scriptsize % small → scriptsize に変更
+\renewcommand{\arraystretch}{1.1} % 行間を詰める
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lc}
+\toprule
+& Placebo \\
+\midrule
+Intercept & \num{1.224}*** \\
+& (\num{0.205}) \\
+Male & \num{0.082} \\
+& (\num{0.072}) \\
+Other gender & \num{-0.075} \\
+& (\num{0.267}) \\
+Age: 30s & \num{0.201} \\
+& (\num{0.176}) \\
+Age: 40s & \num{0.075} \\
+& (\num{0.170}) \\
+Age: 50s & \num{0.190} \\
+& (\num{0.168}) \\
+Age: 60s & \num{0.249} \\
+& (\num{0.173}) \\
+Age: 70+ & \num{0.373}* \\
+& (\num{0.174}) \\
+Hokkaido & \num{-0.080} \\
+& (\num{0.185}) \\
+Tohoku & \num{-0.185} \\
+& (\num{0.182}) \\
+Kita-Kanto & \num{0.058} \\
+& (\num{0.154}) \\
+Minami-Kanto & \num{0.136} \\
+& (\num{0.147}) \\
+Tokyo & \num{-0.045} \\
+& (\num{0.153}) \\
+Hokuriku-Shinetsu & \num{-0.200} \\
+& (\num{0.179}) \\
+Tokai & \num{0.055} \\
+& (\num{0.155}) \\
+Kinki & \num{-0.014} \\
+& (\num{0.142}) \\
+Shikoku & \num{0.272} \\
+& (\num{0.246}) \\
+Kyushu & \num{-0.080} \\
+& (\num{0.162}) \\
+Non-regular & \num{-0.515}*** \\
+& (\num{0.103}) \\
+Self-employed & \num{-0.244}+ \\
+& (\num{0.133}) \\
+Not working & \num{-0.509}*** \\
+& (\num{0.091}) \\
+Other employment & \num{-0.327}** \\
+& (\num{0.117}) \\
+\midrule
+Num.Obs. & \num{1147} \\
+R2 & \num{0.060} \\
+\bottomrule
+\end{tabular*}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item + p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001.
+\item Dependent variable: number of non-sensitive control items (0--4).
+\item The pseudo-treatment indicator is perfectly collinear with the intercept and therefore omitted.
+\item The same control group is used for all disputes; hence a single-column placebo test is sufficient.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
