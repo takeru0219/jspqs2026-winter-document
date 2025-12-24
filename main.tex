@@ -234,13 +234,17 @@ These patterns suggest that precarious or non-standard labor market positions ar
 
 Because list experiments are sensitive to design failures, I conduct several checks recommended in the literature.
 
-First, I examine potential floor and ceiling effects. For each dispute and experimental group, I calculate the percentage of respondents who select zero items and the share who select the maximum number of items on the list. Appendix Figure~\ref{fig:appendix_floor_ceiling} visualizes the distribution of item counts by territory and experimental group. Across all three disputes, between 29--34\% of respondents in the control and treatment groups report zero items, while less than 4\% choose the maximum number of items. This indicates that neither floor nor ceiling effects are severe enough to threaten the validity of the estimates.
+First, I examine potential floor and ceiling effects, following \citet{blair2012}. Appendix Figure~\ref{fig:appendix_floor_ceiling} shows the distribution of item counts by territory and experimental group. In addition, I conduct simple boundary tests that compare (i) the probability of reporting zero items and (ii) the probability of reporting the maximum count between the control and treatment lists (Fisher's exact tests). Appendix Figure~\ref{fig:appendix_floor_ceiling_blair_imai} visualizes the treatment--control differences, and Appendix Table~\ref{tab:appendix_floor_ceiling_tests} reports the corresponding p-values. The probability of reporting the maximum is substantially lower in the treatment lists across all three disputes (all $p<10^{-5}$), consistent with mild ``edge avoidance'' behavior often attributed to privacy concerns. However, the overall mass at the boundaries is small (around 3\% at the ceiling in the control lists and below 1\% at the ceiling in the treatment lists), suggesting that floor/ceiling effects are unlikely to drive the main results.
 
 Second, I conduct a placebo test. I construct a dataset that combines the control group with each treatment group and regress the count of non-sensitive items on a pseudo-treatment indicator and the full set of covariates. Because the sensitive item is not included in these counts, the treatment indicator should have no effect if the randomization and the design are valid. Consistent with this expectation, the treatment coefficient is effectively unidentified (and statistically null) once the model drops the collinear indicator, and the covariate patterns are stable across placebo specifications. The specification and placeholder results are reported in Appendix Table~\ref{tab:placebo_reg}. This strengthens confidence that the positive AMEs reported above are capturing genuine responses to the sensitive item, rather than artefacts of the survey design.
 
-In addition, a further design-effect check compares the mean number of non-sensitive items between the control list and the treatment lists (after subtracting the sensitive item). As shown in Figure~\ref{fig:appendix_mean_comparison_check}, the means and their confidence intervals are virtually identical across all three disputes, indicating no evidence that the inclusion of the sensitive item systematically altered responses to the control items.
+
+Third, I implement the formal design-effect test proposed by \citet{blair2012}, which evaluates a set of stochastic-dominance inequalities (their Eq.~19) that must hold if the sensitive item does not distort responses to the control items. Using a nonparametric within-group bootstrap to obtain p-values, the inequalities are not rejected for Takeshima and the Senkaku Islands, and although the Northern Territories exhibits a very small negative margin, the overall test remains far from rejection. Appendix Figure~\ref{fig:appendix_blair_imai_margins} and Appendix Table~\ref{tab:appendix_blair_imai_design_effect} report the results.
+
+Fourth, I replicate the baseline prevalence estimates using the maximum-likelihood implementation in the \texttt{list} package (\texttt{ictreg}), which follows \citet{blair2012}. In practice, fully interacted specifications with many dummy variables can yield unstable Hessians in ML estimation; therefore I report the intercept-only ML estimates as a robustness check of the national average prevalence. The ML-based prevalence estimates closely track the difference-in-means results, and the posterior mean probabilities of endorsing the sensitive item (from \texttt{pred.post}) match the implied inv-logit prevalence.
 
 In sum, these robustness checks provide reassurance that the list experiment was well designed and executed, and that the estimated levels of latent indifference are not driven by methodological artifacts.
+
 
 \section{Discussion}
 
@@ -351,6 +355,7 @@ The author has an outsourcing contract with JX Press Corporation, which provided
 
 \section{Robustness Checks}
 
+
 \subsection{Floor and Ceiling Effects}
 
 \begin{center}
@@ -359,20 +364,104 @@ The author has an outsourcing contract with JX Press Corporation, which provided
   \label{fig:appendix_floor_ceiling}
 \end{center}
 
-\newpage
-\subsection{Placebo Regression (pseudo-treatment)}
+\bigskip
 
-\input{reg_placebo_single.tex}
+\begin{center}
+  \includegraphics[width=1\textwidth]{figure_floor_ceiling_blair_imai.pdf}
+  \captionof{figure}{Floor/ceiling diagnostics (treatment minus control) following Blair and Imai (2012)}
+  \label{fig:appendix_floor_ceiling_blair_imai}
+\end{center}
 
+\begin{table}[t]
+  \centering
+  \caption{Floor/ceiling boundary tests (Fisher's exact tests)}
+  \label{tab:appendix_floor_ceiling_tests}
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}  % Reduce column padding for compact layout
+  \sisetup{
+    table-number-alignment=center,
+    tight-spacing=true
+  }
+  \begin{tabular}{
+    l                                                   % Territory
+    S[table-format=1.0]                                 % J
+    S[table-format=4.0]                                 % N_0
+    S[table-format=4.0]                                 % N_1
+    S[table-format=1.3]                                 % Pr(Y=0|T=0)
+    S[table-format=1.3]                                 % Pr(Y=0|T=1)
+    S[table-format=1.3]                                 % p (floor)
+    S[table-format=1.3]                                 % Pr(Y=J|T=0)
+    S[table-format=1.3]                                 % Pr(Y=J+1|T=1)
+    S[table-format=1.1e-1,scientific-notation=true]     % p (ceiling)
+  }
+    \toprule
+    {Territory} & {$J$} & {$N_0$} & {$N_1$} &
+    {$P_0^{\text{floor}}$} & {$P_1^{\text{floor}}$} & {$p_{\text{fl}}$} &
+    {$P_0^{\text{ceil}}$} & {$P_1^{\text{ceil}}$} & {$p_{\text{cl}}$} \\
+    \midrule
+    Takeshima            & 4 & 1147 & 1106 & 0.340 & 0.290 & 0.011 & 0.031 & 0.006 & 8.5e-6  \\
+    Senkaku              & 4 & 1147 & 1128 & 0.340 & 0.295 & 0.024 & 0.031 & 0.004 & 1.5e-7  \\
+    Northern Territories & 4 & 1147 & 1119 & 0.340 & 0.329 & 0.593 & 0.031 & 0.004 & 6.8e-7  \\
+    \bottomrule
+  \end{tabular}
+
+  \begin{threeparttable}
+  \begin{tablenotes}[flushleft]
+    \footnotesize
+    \item Notes: $J$ is the number of non-sensitive control items. $N_0$ and $N_1$ denote sample sizes in the control and treatment groups. ``Floor'' compares $\Pr(Y=0\mid T=0)$ and $\Pr(Y=0\mid T=1)$. ``Ceiling'' compares the probability of the maximum count in each list: $\Pr(Y=J\mid T=0)$ for the control list and $\Pr(Y=J{+}1\mid T=1)$ for the treatment list. Following \citet{blair2012}, a substantially lower ceiling probability in the treatment list is consistent with mild edge-avoidance behavior.
+  \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+\clearpage
 \subsection{Design-Effect Check}
 
 \begin{center}
-  \includegraphics[width=0.75\textwidth]{figure_design_effect_check_mean.pdf}
-  \captionof{figure}{Mean number of non-sensitive items in the control and treatment lists across territorial disputes}
-  \label{fig:appendix_mean_comparison_check}
+  \includegraphics[width=1\textwidth]{figure_design_effect_blair_imai_margins.pdf}
+  \captionof{figure}{Design-effect check using the Blair and Imai (2012) inequality formulation (Eq.~19)}
+  \label{fig:appendix_blair_imai_margins}
 \end{center}
 
+\begin{table}[htbp]
+  \centering
+  \caption{Blair and Imai (2012) design-effect test results (bootstrap)}
+  \label{tab:appendix_blair_imai_design_effect}
+  \small
+  \begin{tabular}{lrrrrr}
+    \toprule
+    Territory & $J$ & Min margin & $\min(A)$ & $\min(B)$ & Bootstrap $p$ \\
+    \midrule
+    Takeshima & 4 & 0.0084 & 0.0084 & 0.0251 & 0.5015 \\
+    Senkaku & 4 & 0.0041 & 0.0041 & 0.0278 & 0.5240 \\
+    Northern Territories & 4 & -0.0082 & -0.0082 & 0.0269 & 0.5920 \\
+    \bottomrule
+  \end{tabular}
 
+  \begin{threeparttable}
+  \begin{tablenotes}[flushleft]
+    \footnotesize
+    \item Notes: $J$ is the number of non-sensitive (control) items. The test evaluates the set of stochastic-dominance inequalities in \citet[][Eq.~19]{blair2012}. ``Min margin'' is the most negative (i.e., worst) inequality margin across all constraints; non-negative values are consistent with no design effects. Bootstrap p-values are computed via within-group resampling.
+  \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+
+
+% Start the placebo subsection on a fresh page and keep its heading with the regression table
+\clearpage
+\subsection{Placebo Regression (pseudo-treatment)}
+
+% Ensure the regression table is placed on the same page as the subsection header
+\begingroup
+\renewcommand{\floatpagefraction}{.9}
+\renewcommand{\topfraction}{.9}
+\renewcommand{\bottomfraction}{.9}
+\renewcommand{\textfraction}{.1}
+\input{reg_placebo_single.tex}
+\endgroup
+
+% Prevent the next section from floating up above the placebo table
+\FloatBarrier
+\clearpage
 \section{Regional Coding: Prefectures and PR Blocks}
 
 Table~\ref{tab:pr_blocks} shows how Japan's 47 prefectures are grouped into
