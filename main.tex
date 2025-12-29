@@ -47,7 +47,7 @@ in Japanese Territorial Attitudes}
 \maketitle
 
 \begin{abstract}
-Japan is currently engaged in three major territorial disputes: the Northern Territories, Takeshima, and the Senkaku Islands. While official government surveys consistently report high levels of public concern, respondents may overstate their engagement due to social desirability bias. To address this, this paper employs a list experiment through an online opt-in survey of 4,500 Japanese citizens to estimate the proportion of the population that is privately indifferent to each dispute. The results reveal substantial levels of hidden indifference: approximately 19\% for Takeshima, 11\% for the Senkaku Islands, and 5\% for the Northern Territories. Crucially, this indifference is not randomly distributed but is systematically structured by socioeconomic and geographic factors. The analysis shows that indifference is significantly higher among individuals in precarious employment. Furthermore, residents of metropolitan areas, such as Tokyo and Kinki region, exhibit greater indifference toward Takeshima and the Senkaku Islands, while people in closer proximity to these territories tend to be more engaged. Interestingly, however, residents in Hokkaido, the region closest to the Northern Territories, exhibit higher latent indifference than the national average, potentially indicating a divergence between local pragmatic interests and national narratives. These findings challenge the conventional view of a uniformly concerned public and suggest that domestic political constraints on diplomatic compromise may be more flexible than commonly assumed.
+Japan is currently engaged in three major territorial disputes: the Northern Territories, Takeshima, and the Senkaku Islands. While official government surveys consistently report high levels of public concern, respondents may overstate their engagement due to social desirability bias. To address this, this paper employs a list experiment through an online opt-in survey of 4,500 Japanese citizens to estimate the proportion of the population that is privately indifferent to each dispute. Using AMEs from an ICT regression model, the results reveal substantial levels of hidden indifference: approximately 19\% for Takeshima, 11\% for the Senkaku Islands, and 5\% for the Northern Territories. Crucially, this indifference is not randomly distributed but is systematically structured by socioeconomic and geographic factors. The analysis shows that indifference is significantly higher among individuals in precarious employment. Furthermore, residents of metropolitan areas, such as Tokyo and Kinki region, exhibit greater indifference toward Takeshima and the Senkaku Islands, while people in closer proximity to these territories tend to be more engaged. Interestingly, however, residents in Hokkaido, the region closest to the Northern Territories, exhibit higher latent indifference than the national average, potentially indicating a divergence between local pragmatic interests and national narratives. These findings challenge the conventional view of a uniformly concerned public and suggest that domestic political constraints on diplomatic compromise may be more flexible than commonly assumed.
 
 \end{abstract}
 
@@ -62,7 +62,7 @@ However, public opinion on matters of national identity and territory is not alw
 
 This paper posits that conventional surveys may overestimate public engagement due to social desirability bias (SDB), the tendency of respondents to give answers they believe are socially acceptable rather than expressing their true beliefs. Expressing indifference on a matter of national sovereignty could be perceived as unpatriotic, leading respondents to conceal their true attitudes.
 
-To overcome this challenge, this study employs a list experiment, an indirect questioning technique designed to elicit more truthful answers on sensitive topics \citep{blair2012, dimewiki_listexperiments}. By embedding this experiment within an online survey, this research provides a quantitative estimate of the proportion of the Japanese public that is privately indifferent to these territorial disputes. The findings suggest that a considerable portion of the population neither holds a strong opinion nor cares about which country has these territories, revealing a more nuanced and complex reality of public attitudes than is commonly expected.
+To overcome this challenge, this study employs a list experiment, an indirect questioning technique designed to elicit more truthful answers on sensitive topics \citep{imai2011, blair2012, dimewiki_listexperiments}. By embedding this experiment within an online survey, this research provides a quantitative estimate of the proportion of the Japanese public that is privately indifferent to these territorial disputes. The findings suggest that a considerable portion of the population neither holds a strong opinion nor cares about which country has these territories, revealing a more nuanced and complex reality of public attitudes than is commonly expected.
 
 \section{Literature Review: Nationalism, Public Opinion, and Sensitive Attitudes}
 
@@ -150,15 +150,7 @@ Self-employed (26\%) \\
 \renewcommand{\arraystretch}{1.0} % ← 必ず元に戻す
 \end{table}
 
-\subsection{Mean-in-differences}
-\begin{figure}[t] % t: ページ上部, h: その場, b: 下部 など
-  \centering
-  \includegraphics[width=.9\textwidth]{figure_le_indifference_by_territory.pdf}
-  \caption{Mean-in-differences estimates of latent indifference by territorial dispute}
-  \label{fig:mid_territory}
-\end{figure}
-
-Figure~\ref{fig:mid_territory} presents the mean-in-differences estimates of latent indifference for each territorial dispute. The estimates indicate that approximately 19.8\% of respondents are indifferent to the sovereignty of Takeshima, 12.0\% to the Senkaku Islands, and 5.7\% to the Northern Territories. Estimates for Takeshima and the Senkaku Islands are statistically significant at the 0.05 level, while the estimate for the Northern Territories is not.
+Results are reported using AMEs. In what follows, I report the estimated prevalence of latent indifference primarily using AMEs from the ICT regression model, and I use the simple difference-in-means estimates only as a supplementary check reported in Appendix Figure~\ref{appendix:mean_in_differences}.
 
 \subsection{Baseline estimates of latent indifference}
 
@@ -236,12 +228,10 @@ Because list experiments are sensitive to design failures, I conduct several che
 
 First, I examine potential floor and ceiling effects, following \citet{blair2012}. Appendix Figure~\ref{fig:appendix_floor_ceiling} shows the distribution of item counts by territory and experimental group. In addition, I conduct simple boundary tests that compare (i) the probability of reporting zero items and (ii) the probability of reporting the maximum count between the control and treatment lists (Fisher's exact tests). Appendix Figure~\ref{fig:appendix_floor_ceiling_blair_imai} visualizes the treatment--control differences, and Appendix Table~\ref{tab:appendix_floor_ceiling_tests} reports the corresponding p-values. The probability of reporting the maximum is substantially lower in the treatment lists across all three disputes (all $p<10^{-5}$), consistent with mild ``edge avoidance'' behavior often attributed to privacy concerns. However, the overall mass at the boundaries is small (around 3\% at the ceiling in the control lists and below 1\% at the ceiling in the treatment lists), suggesting that floor/ceiling effects are unlikely to drive the main results.
 
-Second, I conduct a placebo test. I construct a dataset that combines the control group with each treatment group and regress the count of non-sensitive items on a pseudo-treatment indicator and the full set of covariates. Because the sensitive item is not included in these counts, the treatment indicator should have no effect if the randomization and the design are valid. Consistent with this expectation, the treatment coefficient is effectively unidentified (and statistically null) once the model drops the collinear indicator, and the covariate patterns are stable across placebo specifications. The specification and placeholder results are reported in Appendix Table~\ref{tab:placebo_reg}. This strengthens confidence that the positive AMEs reported above are capturing genuine responses to the sensitive item, rather than artefacts of the survey design.
 
+Second, I implement the formal design-effect test proposed by \citet{blair2012}, which evaluates a set of stochastic-dominance inequalities (their Eq.~19) that must hold if the sensitive item does not distort responses to the control items. Using a nonparametric within-group bootstrap to obtain p-values, the inequalities are not rejected for Takeshima and the Senkaku Islands, and although the Northern Territories exhibits a very small negative margin, the overall test remains far from rejection. Appendix Figure~\ref{fig:appendix_blair_imai_margins} and Appendix Table~\ref{tab:appendix_blair_imai_design_effect} report the results.
 
-Third, I implement the formal design-effect test proposed by \citet{blair2012}, which evaluates a set of stochastic-dominance inequalities (their Eq.~19) that must hold if the sensitive item does not distort responses to the control items. Using a nonparametric within-group bootstrap to obtain p-values, the inequalities are not rejected for Takeshima and the Senkaku Islands, and although the Northern Territories exhibits a very small negative margin, the overall test remains far from rejection. Appendix Figure~\ref{fig:appendix_blair_imai_margins} and Appendix Table~\ref{tab:appendix_blair_imai_design_effect} report the results.
-
-Fourth, I replicate the baseline prevalence estimates using the maximum-likelihood implementation in the \texttt{list} package (\texttt{ictreg}), which follows \citet{blair2012}. In practice, fully interacted specifications with many dummy variables can yield unstable Hessians in ML estimation; therefore I report the intercept-only ML estimates as a robustness check of the national average prevalence. The ML-based prevalence estimates closely track the difference-in-means results, and the posterior mean probabilities of endorsing the sensitive item (from \texttt{pred.post}) match the implied inv-logit prevalence.
+Third, I replicate the baseline prevalence estimates using the maximum-likelihood implementation in the \texttt{list} package (\texttt{ictreg}), which follows \citet{blair2012}. In practice, fully interacted specifications with many dummy variables can yield unstable Hessians in ML estimation; therefore I report the intercept-only ML estimates as a robustness check of the national average prevalence. The ML-based prevalence estimates closely track the difference-in-means results, and the posterior mean probabilities of endorsing the sensitive item (from \texttt{pred.post}) match the implied inv-logit prevalence.
 
 In sum, these robustness checks provide reassurance that the list experiment was well designed and executed, and that the estimated levels of latent indifference are not driven by methodological artifacts.
 
@@ -349,6 +339,18 @@ The author has an outsourcing contract with JX Press Corporation, which provided
 \setcounter{table}{0}
 \setcounter{figure}{0}
 
+\section{Mean-in-differences Estimates}
+
+Figure~\ref{appendix:mean_in_differences} presents the mean-in-differences estimates of latent indifference for each territorial dispute. The estimates indicate that approximately 19.8\% of respondents are indifferent to the sovereignty of Takeshima, 12.0\% to the Senkaku Islands, and 5.7\% to the Northern Territories. Estimates for Takeshima and the Senkaku Islands are statistically significant at the 0.05 level, while the estimate for the Northern Territories crosses the zero threshold, indicating a smaller but still notable level of indifference.
+
+\begin{figure}[htbp] % t: ページ上部, h: その場, b: 下部 など
+  \centering
+  \includegraphics[width=.9\textwidth]{figure_le_indifference_by_territory.pdf}
+  \caption{Mean-in-differences estimates of latent indifference by territorial dispute}
+  \label{appendix:mean_in_differences}
+\end{figure}
+
+\clearpage
 \section{Full ICT Regression Results}
 \input{reg_ict_three_disputes.tex}
 \FloatBarrier
@@ -445,21 +447,6 @@ The author has an outsourcing contract with JX Press Corporation, which provided
   \end{threeparttable}
 \end{table}
 
-
-% Start the placebo subsection on a fresh page and keep its heading with the regression table
-\clearpage
-\subsection{Placebo Regression (pseudo-treatment)}
-
-% Ensure the regression table is placed on the same page as the subsection header
-\begingroup
-\renewcommand{\floatpagefraction}{.9}
-\renewcommand{\topfraction}{.9}
-\renewcommand{\bottomfraction}{.9}
-\renewcommand{\textfraction}{.1}
-\input{reg_placebo_single.tex}
-\endgroup
-
-% Prevent the next section from floating up above the placebo table
 \FloatBarrier
 \clearpage
 \section{Regional Coding: Prefectures and PR Blocks}
